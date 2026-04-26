@@ -22,7 +22,7 @@ let mining = false;
 
 // ===== DISCORD SETUP =====
 const DISCORD_TOKEN = process.env.TOKEN;
-const CHANNEL_ID = "1474986602567565434";
+const CHANNEL_ID = "1497826250922659970";
 
 const client = new Client({
   intents: [
@@ -46,7 +46,7 @@ rl.on('line', (input) => {
 
 // ===== CREATE BOT =====
 function createBot() {
-  const name = process.argv[2] || "SilverMoon";
+  const name = process.argv[2] || "PRASAD09";
   console.log(`Creating bot... [${name}]`);
 
   let server = settings.server;
@@ -64,7 +64,7 @@ function createBot() {
     console.log('Bot has spawned.');
 
     setTimeout(() => {
-      bot.chat(`/login PRASAD09`);
+      bot.chat(`/login PRASAD@2009`);
 
       setTimeout(() => {
         bot.chat('/server survival');
