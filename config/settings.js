@@ -4,7 +4,7 @@ module.exports = {
         // port: 25565, // Minecraft server port
     },
     botSettings: {
-        password: 'PRASAD09',
+        password: 'PRASAD@2009',
         version: '1.18.1', // Minecraft version
     }
 };
