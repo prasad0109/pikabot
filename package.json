@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "bot.js",
   "scripts": {
-    "start": "node bot.js SilverMoon"
+    "start": "node bot.js PRASAD09"
   },
   "dependencies": {
     "mineflayer": "^4.33.0",
