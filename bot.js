@@ -46,7 +46,7 @@ rl.on('line', (input) => {
 
 // ===== CREATE BOT =====
 function createBot() {
-  const name = process.argv[2] || "PRASAD09";
+  const name = process.argv[2] || "ZzZebra";
   console.log(`Creating bot... [${name}]`);
 
   let server = settings.server;
