@@ -22,7 +22,7 @@ let mining = false;
 
 // ===== DISCORD SETUP =====
 const DISCORD_TOKEN = process.env.TOKEN;
-const CHANNEL_ID = "1497826250922659970";
+const CHANNEL_ID = "1509812427917889546";
 
 const client = new Client({
   intents: [
