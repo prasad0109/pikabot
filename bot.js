@@ -80,7 +80,7 @@ function createBot() {
 
   reconnecting = true;
 
-  const name = process.argv[2] || "ZzZebra";
+  const name = process.argv[2] || "PRASAD09";
 
   console.log(`Creating bot... [${name}]`);
 
