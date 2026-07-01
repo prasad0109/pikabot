@@ -150,6 +150,8 @@ bot.on("message", async (jsonMsg) => {
     // Only forward important messages
     const important = [
       "logged",
+      "me",
+      "msg",
       "login",
       "joined",
       "left",
