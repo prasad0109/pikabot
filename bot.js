@@ -21,8 +21,9 @@ server.keepAliveTimeout = 65000;
 server.headersTimeout = 66000;
 
 // ================= DISCORD =================
+// ================= DISCORD =================
 const DISCORD_TOKEN = process.env.TOKEN;
-const CHANNEL_ID = "1509812381331619882";
+const CHANNEL_ID = "1517951731714101279";
 
 const client = new Client({
   intents: [
@@ -32,9 +33,27 @@ const client = new Client({
   ],
 });
 
-client.on("ready", () => {
+let discordChannel = null;
+
+client.once("ready", async () => {
   console.log(`Discord logged in as ${client.user.tag}`);
+
+  try {
+    discordChannel = await client.channels.fetch(CHANNEL_ID);
+  } catch (err) {
+    console.error("Couldn't fetch Discord channel:", err.message);
+  }
 });
+
+async function sendToDiscord(message) {
+  if (!discordChannel) return;
+
+  try {
+    await discordChannel.send(message);
+  } catch (err) {
+    console.error("Discord send error:", err.message);
+  }
+}
 
 // ================= GLOBALS =================
 let bot = null;
@@ -117,23 +136,41 @@ function createBot() {
   });
 
   // ================= CHAT =================
-  bot.on("message", async (jsonMsg) => {
-    try {
-      const msg = jsonMsg.toString();
+bot.on("message", async (jsonMsg) => {
+  try {
+    const msg = jsonMsg.toString().trim();
 
-      console.log(msg);
+    if (!msg) return;
 
-      // Send to Discord safely
-      await sendToDiscord(`📩 ${msg}`);
-
-      // Auto server join
-      if (msg.includes("Right click the")) {
-        bot.chat("/server survival");
-      }
-    } catch (err) {
-      console.error("Message handler error:", err.message);
+    // Auto join survival
+    if (msg.includes("Right click the")) {
+      bot.chat("/server survival");
     }
-  });
+
+    // Only forward important messages
+    const important = [
+      "logged",
+      "login",
+      "joined",
+      "left",
+      "kicked",
+      "banned",
+      "survival",
+      "connected",
+      "disconnected",
+      "teleported",
+      "error"
+    ];
+
+    if (important.some(word => msg.toLowerCase().includes(word))) {
+      console.log(msg);
+      await sendToDiscord(`📩 ${msg}`);
+    }
+
+  } catch (err) {
+    console.error("Message handler error:", err.message);
+  }
+});
 
   // ================= ERRORS =================
   bot.on("error", (err) => {
