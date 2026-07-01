@@ -150,18 +150,14 @@ bot.on("message", async (jsonMsg) => {
     // Only forward important messages
     const important = [
       "logged",
+      "warped",
       "me",
       "msg",
-      "login",
       "joined",
       "left",
-      "kicked",
-      "banned",
       "survival",
       "connected",
       "disconnected",
-      "teleported",
-      "error"
     ];
 
     if (important.some(word => msg.toLowerCase().includes(word))) {
